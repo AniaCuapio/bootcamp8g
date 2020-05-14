@@ -1,0 +1,45 @@
+* {
+    color: peru;
+}
+/* Selector por etiqueta*/
+p {
+    text-transform: uppercase;
+}
+
+/* Selector por id*/
+#page-heading{
+    text-decoration: underline;
+    font-style: italic;
+}
+
+/* Selector por clase*/
+.btn-success {
+width: 100px;
+height: 30px;
+text-align: center;
+border: 1px dotted black;
+border-radius: 5px;
+/* box-shadow: 30px 30px 10px rgb(109, 20, 104); */
+}
+
+#first-list{
+    border-style: solid;
+    border-color: black;
+    box-shadow: 10px 10px 5px gray;
+    list-style: none;
+}
+
+#first-list li{
+    border-style: solid;
+    border-color: blue;
+    margin: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#uno{
+    color: rgb(241, 19, 230);
+    text-transform: uppercase;
+
+}
+
