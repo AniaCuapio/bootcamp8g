@@ -1,0 +1,51 @@
+.wrapper{
+    display: flex;
+   flex-direction: column;
+}
+
+.square{
+    width: 100px;
+height: 100px;
+
+}
+.square.purple{
+background-color: blueviolet;
+flex-grow: 1;
+}
+.square.black{
+background-color: black;
+flex-grow: 1;
+}
+
+.square.green{
+background-color: chartreuse;
+flex-grow: 1;
+}
+.square.peru{
+background-color: peru;
+flex-grow: 1;
+}
+
+@media only screen and (min-width : 768px){
+    .square.purple{
+        background-color: orangered;
+        flex-grow: 1;
+        }
+        .square.black{
+        background-color: goldenrod;
+        flex-grow: 1;
+        }
+        
+        .square.green{
+        background-color: turquoise;
+        flex-grow: 1;
+        }
+        .square.peru{
+        background-color: powderblue;
+        flex-grow: 1;
+        }
+}
+
+@media only screen and (min-width : 600px){
+    
+}

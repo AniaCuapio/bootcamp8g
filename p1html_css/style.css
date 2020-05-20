@@ -1,6 +1,8 @@
-*{
+*:not(body){
     box-sizing: border-box;
+    padding:15px
 }
+
 
 body{
     margin: 5px;
@@ -16,6 +18,7 @@ header{
 }
 nav{
     background-color: #df00d2;
+    width: 80%
 }
 section{
     background-color: #6097fc;
