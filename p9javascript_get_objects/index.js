@@ -79,11 +79,41 @@ const cars = [
 const getCarsByYear = () => {
     let year = parseInt(prompt("¿Cuál es el año a partir del que quieres buscar?"));
     let filteredCars = cars.filter((item) => item.year >= year)
-    filteredCars.forEach((item, index) =>
-        alert(`Opción: ${index + 1}: ${item.maker} ${item.model}
-        del año ${item.year}, con ${item.hp} caballos de fuerza`)
-    )
+    filteredCars.forEach((item, index) => {
+        //Desestructuración
+        let { maker, model, year, hp } = item;
+        alert(`Opción: ${index + 1}: ${maker} ${model}
+        del año ${year}, con ${hp} caballos de fuerza`)
+    })
 };
 
 log(getCarsByYear())
 
+////////// Clase desestructuración y construcción de objetos
+
+var car = [
+    [
+        "2010",
+        "Toyota",
+        "Supra",
+        "300"
+    ],
+    [
+        "2015",
+        "Mazda",
+        "RX7",
+        "350"
+    ],
+    [
+        "2015",
+        "Nissan",
+        "Skyline",
+        "300"
+    ]
+]
+
+let objectCar = cars.map((car) => {
+    var [year, maker, model, hp] = car;
+    return { year, maker, model, hp };
+});
+console.log(objectCar);
