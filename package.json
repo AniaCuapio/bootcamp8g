@@ -1,0 +1,30 @@
+{
+  "name": "bootcamp8g",
+  "version": "1.0.0",
+  "description": "repos del bootcamp kodemia módulo Front End 8va generación",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AniaCuapio/bootcamp8g.git"
+  },
+  "keywords": [
+    "HTML",
+    "CSS",
+    "Bootstrap",
+    "Javascript",
+    "Jquery",
+    "Jest"
+  ],
+  "author": "Ania",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AniaCuapio/bootcamp8g/issues"
+  },
+  "homepage": "https://github.com/AniaCuapio/bootcamp8g#readme",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
+}
