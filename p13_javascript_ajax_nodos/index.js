@@ -38,7 +38,6 @@ const saveData = (postObject) => {
     xhttp.send(JSON.stringify(postObject))
 };
 
-
 //Esto trae los posts almacenados en la DB
 const getPosts = () => {
     clean()
