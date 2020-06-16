@@ -12,8 +12,6 @@ var feed = document.querySelector(".feed")
 //Listeners
 submitButton.addEventListener("click", savePost)
 
-
-
 //Callbacks
 var postObject = {}
 function savePost() {
@@ -22,7 +20,6 @@ function savePost() {
     // log(postObject);
     saveData(postObject)
     getPosts()
-
 }
 
 //Esto guarda el objeto post en la DB
@@ -44,6 +41,7 @@ const saveData = (postObject) => {
 
 //Esto trae los posts almacenados en la DB
 const getPosts = () => {
+    clean()
     let xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
@@ -61,7 +59,6 @@ const getPosts = () => {
 
 // //Esto dibuja el post en el DOM
 const renderPost = (id, post) => {
-    feed = "";
     let { title, text, date, author } = post
     let cardPost =
         `<div class="col-md-6">
@@ -104,8 +101,8 @@ const updatePost = (e) => {
 }
 
 ////Esto actualiza el objeto post en la DB
-const savePost = (e) => {
-    let id = e.target.id
+const patchPost = (e) => {
+    let id = e.target.attributes.getNamedItem("data-id").nodeValue
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         console.log(this.readyState)
@@ -118,14 +115,16 @@ const savePost = (e) => {
     }
     xhttp.open("PATCH", `https://ajaxclass-1ca34.firebaseio.com/equipo3/posts/.json`, true)
     xhttp.send(JSON.stringify(post(id)))
-    renderPost()
+    getPosts()
 };
 
 
 
 ////Esto borra el objeto post en la DB
 const deletePost = (e) => {
-    let id = e.target
+    let id2 = e.target.getAttribute('data-id')
+    log(id2)
+    let id = e.target.attributes.getNamedItem("data-id").nodeValue
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         console.log(this.readyState)
@@ -137,6 +136,10 @@ const deletePost = (e) => {
         }
     }
     xhttp.open("DELETE", `https://ajaxclass-1ca34.firebaseio.com/equipo3/posts/${id}.json`, true)
-    xhttp.send(JSON.stringify(post(id)))
-    renderPost()
+    xhttp.send(JSON.stringify(id))
+    getPosts()
 };
+
+const clean = () => {
+    feed.innerHTML = ""
+}
