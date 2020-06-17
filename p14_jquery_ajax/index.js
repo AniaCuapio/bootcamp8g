@@ -2,38 +2,37 @@ const log = console.log
 
 //Nodos
 
-$(document).ready(function () {
-    // $(window).load(function () {
-    let xhttp = new XMLHttpRequest();
+// $(window).load(function () {
+let xhttp = new XMLHttpRequest();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let koders = JSON.parse(this.responseText)
-            log(koders)
-            for (const key in koders) {
-                log(koders[key])
-                renderRow(koders[key])
-            }
+xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        let koders = JSON.parse(this.responseText)
+        log(koders)
+        for (const key in koders) {
+            log(koders[key])
+            renderRow(koders[key])
         }
     }
-    xhttp.open("GET", "https://ajaxclass-1ca34.firebaseio.com/equipo3/koders/.json", true)
-    xhttp.send()
+}
+xhttp.open("GET", "https://ajaxclass-1ca34.firebaseio.com/equipo3/koders/.json", true)
+xhttp.send()
 
 
-    $("#submit").click(function (e) {
-        e.preventDefault();
-        let firstName = $("#first").val()
-        let lastName = $("#last").val()
-        let age = $("#age").val()
-        let mail = $("#mail").val()
-        let userObject = { firstName, lastName, age, mail }
-        // log(userObject)
-        renderRow(userObject)
-    });
+$("#submit").click(function (e) {
+    e.preventDefault();
+    let firstName = $("#first").val()
+    let lastName = $("#last").val()
+    let age = $("#age").val()
+    let mail = $("#mail").val()
+    let userObject = { firstName, lastName, age, mail }
+    // log(userObject)
+    renderRow(userObject)
+});
 
-    function renderRow(userObject) {
-        let { firstName, lastName, age, mail } = userObject
-        userRow = `
+function renderRow(userObject) {
+    let { firstName, lastName, age, mail } = userObject
+    userRow = `
     <tr>
     <td class="firstName" data-name="${firstName}" >${firstName}</td>
     <td class="lastName" data-last="${lastName}">${lastName}</td>
@@ -48,39 +47,39 @@ $(document).ready(function () {
         </svg></td>
 </tr>
     `
-        $("tbody").append(userRow);
-        $(".delete").click(function () {
-            $(this).parent().remove();
-        })
-    }
-
-    var arrayKoders = []
-
-    $("#saveData").click(function (e) {
-        $("tbody tr").each(function () {
-            // $("td", this)
-            let firstName = $(".firstName", this).text()
-            let lastName = $(".lastName", this).text()
-            let age = $(".age", this).text()
-            let mail = $(".mail", this).text()
-            let userObject = { firstName, lastName, age, mail }
-            let id = putAJAX(userObject).name
-            $(this).data("koderId", id)
-        });
+    $("tbody").append(userRow);
+    $(".delete").click(function () {
+        $(this).parent().remove();
     })
+}
 
-    const putAJAX = (object) => {
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            console.log(this.readyState)
-            console.log(this.status)
-            if (this.readyState == 4 && this.status == 200) {
-                let response = JSON.parse(this.response)
-                console.log(response)
-                return response
-            }
-        }
-        xhttp.open("POST", `https://ajaxclass-1ca34.firebaseio.com/equipo3/koders/.json`, true)
-        xhttp.send(JSON.stringify(object))
-    };
+var arrayKoders = []
+
+$("#saveData").click(function (e) {
+    $("tbody tr").each(function () {
+        // $("td", this)
+        let firstName = $(".firstName", this).text()
+        let lastName = $(".lastName", this).text()
+        let age = $(".age", this).text()
+        let mail = $(".mail", this).text()
+        let userObject = { firstName, lastName, age, mail }
+
+        let id = putAJAX(userObject).name
+        $(this).data("koderId", id)
+    });
 })
+
+const putAJAX = (object) => {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        console.log(this.readyState)
+        console.log(this.status)
+        if (this.readyState == 4 && this.status == 200) {
+            let response = JSON.parse(this.response)
+            console.log(response)
+            return response
+        }
+    }
+    xhttp.open("PUT", `https://ajaxclass-1ca34.firebaseio.com/equipo3/koders/.json`, true)
+    xhttp.send(JSON.stringify(object))
+};
